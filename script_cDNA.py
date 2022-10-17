@@ -55,8 +55,8 @@ pri = int(n1)
 seg = int(n2)
 ter = int(n3)
 qua = int(n4)
-seq1 = dna[pri -1 : seg -1]
-seq2 = dna[ter -1 : qua ]
+seq1 = dna[pri -1 : seg ]
+seq2 = dna[ter  : qua ]
 
 #conferir se digitou o tipo certo de dados indicando qual foi o possível erro
 def checkdados():
@@ -93,7 +93,7 @@ def checkseq():
 #se os dados estão corretos, e a sequência começa e termina com os codons certos, concatena as duas ou imprime uma mensagem de erro
 if checkdados() == True:
         print("As sequências são: ", seq1, " e ", seq2)
-        if checkseq() == False: #somente para o código funcionar; checkseq() não entende o final da string como válido por algum motivo
+        if checkseq() == True: 
                 print(seq1 + seq2, "É a sequência final")
         else:
                 print("Não foi possível concatenar")
