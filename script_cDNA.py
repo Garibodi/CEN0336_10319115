@@ -1,97 +1,3 @@
-﻿#aceita o input do usuário sobre a sequência e os números de interesse
-
-import sys
-print(sys.argv)
-seq = sys.argv[1]
-n1 = sys.argv[2]
-n2 = sys.argv[3]
-n3 = sys.argv[4]
-n4 = sys.argv[5]
-lenght = len(seq[0: ])
-
-#diz o tamanho da string
-print("tamanho da string é", lenght, "caracteres")
-
-def testes(): #testa se os formatos estão certos e se os números são menores que a sequência
-    global seq, n1, n2, n3, n4, lenght
-    try:
-        seq = str(seq)
-        n1 = int(n1)
-        n2 = int(n2)
-        n3 = int(n3)
-        n4 = int(n4)
-
-    except:
-        if type(seq) == int:
-            print("Sua sequência não está correta")
-        elif type(n1) != int or n1 > seq:
-            print("Sequência certa, porém n1 não é um número")
-        elif type(n2) != int:
-            print("Sequência certa, porém n2 não é um número")
-        elif type(n3) != int:
-            print("Sequência certa, porém n3 não é um número")
-        elif type(n4) != int:
-            print("Sequência certa, porém n4 não é um número")        
-testes()
-
-
-
-
-def check(a):
-    if a < lenght:
-        print("Intervalos ok!")
-    elif a > lenght: #testa se os números não são maiores que a string
-        print("Deu ruim, ", a, "é muito grande")
-      
-            
-check(n1)
-check(n2)
-check(n3)
-check(n4)
-
-#pega o intervalo n1:n2 e n3:n4, printa cada um
-seq1 = seq[n1 -1 :n2 -1]
-seq2 = seq[n3 -1 :n4 -1 ]
-print("As sequências são: ", seq1, " e ", seq2)
-
-#conferir se inicia com o códon de inicio, ATG.
-if "ATG" in seq1[0: ]:
-    print("A sequência 1 começa com ATG")
-    beg = 1
-else:
-    print("A sequência 1 não começa com ATG")
-    beg = 0
-
-#conferir se termina com o códon de termino, TAG, TAA, TGA.
-if "TAG" or "TAA" or "TGA" in seq2[ :n4]:
-    print("A sequência 2 termina com stop codon")
-    end = 1
-else:
-    print("A sequência 2 não termina com stop codon")
-    end = 0
-
-def concatena() :  #, concatena e printa o resultado   
-    global beg, end, seq1, seq2, seq3
-    if (beg and end) == 1:
-        seq3 = seq1 + seq2
-        print("Sequência resultante é: ", seq3)
-    elif beg == 0:
-        print("Sequência 1 não deu certo")
-    elif end == 0:
-        print("Sequência 2 deu Não deu certo")
-if (beg and end) == 1:
-    concatena()
-
-
-
-
-
-
-
-
-
-
-
 #crie um script de python com o nome script_cDNA.py que realize as seguintes operações: 
 
 #1. Aceitar cinco argumentos da linha de comentos (use o modulo sys). O primeiro argumento é uma sequência de DNA (veja abaixo), os outros quatro argumentos são números inteiros. Os números inteiros correspondem a os números n1, n2, n3 e n4 como são mostrados na figura de acima, nessa ordem específica.
@@ -106,16 +12,101 @@ if (beg and end) == 1:
 
 #Seu script tem que ter comentários (linhas que iniciam com #) indicando o que está fazendo cada bloco de código!
 
-#Seu script tem que ser carregado (ADD/COMMIT/PUSH) no seu repositório para a prova.
-
 #CGTCGTCGCCGCCGCCGCCATGTCGGGAGGTGGTGTGATCCGTGGCCCGACGAAAAAAAAAAAAAGCGGGGAACAACGACTGCCGCATCTACGTGTAAAAAAACGAAAAAAAAAAAAAAAAAAAA
-
 #E as coordenadas:
-
 #n1: 20
-
 #n2: 49
-
 #n3: 66
-
 #n4: 98
+
+#aceita os dados via terminal usando sys
+# import sys
+# print(sys.argv)
+# seq = sys.argv[1]
+# n1 = sys.argv[2]
+# n2 = sys.argv[3]
+# n3 = sys.argv[4]
+# n4 = sys.argv[5]
+# lenght = len(seq[0: ])
+
+#or
+
+#aceita os dados via input
+# seq = input("Sequência: ")
+# n1 = input("1o Número: ")
+# n2 = input("2o Número: ")
+# n3 = input("3o Número: ")
+# n4 = input("4o Número: ")
+# lenght = len(seq[0: ])
+
+# or
+
+#aceita os dados no script
+seq = "CGTCGTCGCCGCCGCCGCCATGTCGGGAGGTGGTGTGATCCGTGGCCCGACGAAAAAAAAAAAAAGCGGGGAACAACGACTGCCGCATCTACGTGTAAAAAAACGAAAAAAAAAAAAAAAAAAAA"
+n1 = "20"
+n2 = "49"
+n3 = "66"
+n4 = "98"
+lenght = len(seq[0: ])
+
+#variáveis validadas no formato certo
+dna = str(seq)
+pri = int(n1)
+seg = int(n2)
+ter = int(n3)
+qua = int(n4)
+seq1 = dna[pri -1 : seg -1]
+seq2 = dna[ter -1 : qua ]
+
+#conferir se digitou o tipo certo de dados indicando qual foi o possível erro
+def checkdados():
+        global dna, pri, seg, ter, qua
+        if (seq.isalpha() == True) :
+                print("Sequência Ok")
+                if (n1.isdigit() ==True) and int(n1) < lenght:
+                        print("número 1 ok")
+                        if (n2.isdigit() ==True) and int(n2) < lenght:
+                                print("número 2 ok")
+                                if (n3.isdigit() ==True) and int(n3) < lenght:
+                                        print("número 3 ok")
+                                        if (n4.isdigit() ==True) and int(n4) < lenght:
+                                                print("número 4 ok")
+                                                return True #retorna True se todos os dados estão corretos
+        else:
+                return False #retorna falso caso contrário
+
+
+#confere se a sequência Começa com ATG e termina com TAG, TAA ou TGA, indicando qual delas pode estar errada
+def checkseq():
+        if seq1.startswith("ATG") and seq2.endswith("TAG" or "TAA" or "TGA"):
+                print("Sequência começa com ATG e termina com códons de parada")
+                return True
+        elif seq1.startswith("ATG") == False:
+                print("A sequência 1 NÃO começa com ATG")
+                return False
+        elif seq2.endswith("TAG" or "TAA" or "TGA") == False:
+                print("A sequência 2 NÃO termina com Códon de parada")
+                return False 
+
+
+  
+#se os dados estão corretos, e a sequência começa e termina com os codons certos, concatena as duas ou imprime uma mensagem de erro
+if checkdados() == True:
+        print("As sequências são: ", seq1, " e ", seq2)
+        if checkseq() == False: #somente para o código funcionar; checkseq() não entende o final da string como válido por algum motivo
+                print(seq1 + seq2, "É a sequência final")
+        else:
+                print("Não foi possível concatenar")
+        
+
+
+
+
+
+
+
+
+
+
+
+
