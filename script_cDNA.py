@@ -50,7 +50,7 @@ check(n3)
 check(n4)
 
 #pega o intervalo n1:n2 e n3:n4, printa cada um
-seq1 = seq[n1 -1 :n2 -2]
+seq1 = seq[n1 -1 :n2 -1]
 seq2 = seq[n3 -1 :n4 -1 ]
 print("As sequências são: ", seq1, " e ", seq2)
 
@@ -76,9 +76,9 @@ def concatena() :  #, concatena e printa o resultado
         seq3 = seq1 + seq2
         print("Sequência resultante é: ", seq3)
     elif beg == 0:
-        print("Sequência 1 deu ruim")
+        print("Sequência 1 não deu certo")
     elif end == 0:
-        print("Sequência 2 deu ruim")
+        print("Sequência 2 deu Não deu certo")
 if (beg and end) == 1:
     concatena()
 
