@@ -55,9 +55,11 @@ pri = int(n1)
 seg = int(n2)
 ter = int(n3)
 qua = int(n4)
-seq1 = dna[pri -1 : seg ]
-seq2 = dna[ter  : qua ]
-
+seq1 = dna[pri-1 : seg ]
+seq2 = dna[ter : qua  ]
+startc = "ATG"
+endc = ("TAG", "TAA", "TGA")
+ 
 #conferir se digitou o tipo certo de dados indicando qual foi o possível erro
 def checkdados():
         global dna, pri, seg, ter, qua
@@ -78,13 +80,13 @@ def checkdados():
 
 #confere se a sequência Começa com ATG e termina com TAG, TAA ou TGA, indicando qual delas pode estar errada
 def checkseq():
-        if seq1.startswith("ATG") and seq2.endswith("TAG" or "TAA" or "TGA"):
+        if seq1.startswith(startc) and seq2.endswith(endc):
                 print("Sequência começa com ATG e termina com códons de parada")
                 return True
-        elif seq1.startswith("ATG") == False:
+        elif seq1.startswith(startc) == False:
                 print("A sequência 1 NÃO começa com ATG")
                 return False
-        elif seq2.endswith("TAG" or "TAA" or "TGA") == False:
+        elif seq2.endswith(endc) == False:
                 print("A sequência 2 NÃO termina com Códon de parada")
                 return False 
 
