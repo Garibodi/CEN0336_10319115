@@ -1,6 +1,10 @@
 #aceita as variaveis do triangulo
-a = input("Digite o valor do lado 1: ")
-b = input("Digite o valor do lado 2: ")
+# a = input("Digite o valor do lado 1: ")
+# b = input("Digite o valor do lado 2: ")
+
+import sys
+a = sys.argv[1]
+b = sys.argv[2]
 
 #checa se é um número menor que 500 e se realmente é um número, se não cumprir estas condições pede ao usuário para recomeçar
 def dados():
